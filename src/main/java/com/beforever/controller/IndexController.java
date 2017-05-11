@@ -18,6 +18,7 @@ import java.util.*;
  */
 @Controller
 public class IndexController {
+
     @RequestMapping(path = {"/", "/index"})
     @ResponseBody
     public String index(HttpSession session) {
