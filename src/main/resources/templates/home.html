@@ -1,0 +1,63 @@
+<html>
+<body>
+<pre>
+    $!{value1}
+    $!{value2}  ## ！表示如果不存在强制为空，##为行注释
+    #*
+    这是段注释
+    变量以$！开头
+    *#
+    <!--html这个也能用-->
+    ${value3}
+
+    $!{colors}   ##这里面可以传复杂数据结构的值，相当于toString方法
+
+    #*
+    这是velocity中的for循环语法,以传list为例
+    index索引从0开始，count计数器从1开始
+    *#
+    #foreach($color in $colors)
+      This is color $!{foreach.index}:$color $!{foreach.count}
+    #end
+
+    #*
+    在后台中的方法在这里面依然可以调用，以map中的keyset()方法
+    *#
+    #foreach($key in $map.keySet())
+       Number:$key, Value:$map.get($key)
+    #end
+
+    #foreach($kv in $map.entrySet())
+       Number:$kv.key,Value:$kv.value
+    #end
+
+    User:$!{user.name}
+    $!{user.description}
+    $!{user.getDescription()}
+
+    #set($title="Nowcoder_Title")
+    Title:$!{title}
+
+    #*
+    parse可以解析模版
+    include显示静态文字,纯静态扩展
+    *#
+    #parse("header.html")
+    #include("header.html")
+
+    #macro(render_color,$index,$color)
+    Color Render Macro $index,$color        ##宏定义
+    #end
+
+    #foreach($color in $colors)
+    #render_color($foreach.index,$color)                         ##宏调用
+    #end
+
+    #set($hello="hello")
+    #set($helloworld1="$!{hello} world")
+    $!{hello}
+    $!{helloworld1}
+
+</pre>
+</body>
+</html>
